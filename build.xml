@@ -33,7 +33,11 @@
     </target>
 	
 	<target name="DeployinHotFix">
-     <sf:deploy username="vmehtani@deloitte.com.hotfix.as" password="Neela@12345" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src_HotFix" checkonly = "false"/>
+     <sf:deploy username="vmehtani@deloitte.com.hotfix.as" password="Neela@12345" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src_HotFix" checkonly = "true"/>
+    </target>
+	
+	<target name="DeployinHotFix_Dev">
+     <sf:deploy username="vmehtani@deloitte.com.prod.hotfixdev" password="Neela@12345" serverurl="https://test.salesforce.com" maxPoll="${sf.maxPoll}" deployRoot="src_HotFix" checkonly = "true"/>
     </target>
 	
 	<target name="DeployinST">
