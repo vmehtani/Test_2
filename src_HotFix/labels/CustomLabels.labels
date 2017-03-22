@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+<labels>
+        <fullName>Enrollment_Portal_SSO_IDN_JS_Logout_URL_HF</fullName>
+        <categories>Enrollment Portal SSO IDN JS Logout URL HF</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enrollment Portal SSO IDN JS Logout URL HF</shortDescription>
+        <value>https://hfportal-sb.identitynow.com/logout</value>
+    </labels>
+</CustomLabels>

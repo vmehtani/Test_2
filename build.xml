@@ -1,0 +1,62 @@
+<project name="Sample usage of Salesforce Ant tasks" default="test" basedir="." xmlns:sf="antlib:com.salesforce">
+    <property file="build.properties"/>
+    <property environment="env"/>
+
+    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+        <classpath>
+            <pathelement location="../ant-salesforce.jar" />
+        </classpath>
+    </taskdef>
+		
+	<target name="extractHotFixDev">
+		<mkdir dir="HotFixDev_Retrieve_1"/>
+      <sf:retrieve username="vmehtani@deloitte.com.prod.hotfixdev" password="Neela@12345" serverurl="https://test.salesforce.com" maxPoll="${sf.maxPoll}" 
+	  retrieveTarget="HotFixDev_Retrieve_1" unpackaged="package.xml" pollWaitMillis="${sf.pollWaitMillis}"/>
+    </target>
+	
+	<target name="ST_FullBackup">
+		<mkdir dir="ST_FullBackup"/>
+      <sf:retrieve username="vmehtani@deloitte.com.st" password="Jan@12345" serverurl="https://test.salesforce.com" maxPoll="${sf.maxPoll}" 
+	  retrieveTarget="ST_FullBackup" unpackaged="package_Full.xml" pollWaitMillis="${sf.pollWaitMillis}"/>
+    </target>
+	
+	<target name="RT_FullBackup">
+		<mkdir dir="RT_FullBackup"/>
+      <sf:retrieve username="vmehtani@deloitte.com.rt" password="Jan@12345" serverurl="https://test.salesforce.com" maxPoll="${sf.maxPoll}" 
+	  retrieveTarget="RT_FullBackup" unpackaged="package_Full.xml" pollWaitMillis="${sf.pollWaitMillis}"/>
+    </target>
+	
+	<target name="HotFix_FullBackup">
+		<mkdir dir="HotFix_FullBackup"/>
+      <sf:retrieve username="vmehtani@deloitte.com.hotfix.as" password="Neela@12345" serverurl="https://test.salesforce.com" maxPoll="${sf.maxPoll}" 
+	  retrieveTarget="HotFix_FullBackup" unpackaged="package_Full.xml" pollWaitMillis="${sf.pollWaitMillis}"/>
+    </target>
+	
+	<target name="DeployinHotFix">
+     <sf:deploy username="vmehtani@deloitte.com.hotfix.as" password="Neela@12345" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src_HotFix" checkonly = "false"/>
+    </target>
+	
+	<target name="DeployinST">
+     <sf:deploy username="vmehtani@deloitte.com.st" password="Jan@12345" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src_ST" checkonly = "false"/>
+    </target>
+	
+	<target name="extractSprintADev">
+		<mkdir dir="SprintADev_Retrieve_1"/>
+      <sf:retrieve username="vmehtani@deloitte.com.prod.sprintadev" password="Jan@12345" serverurl="https://test.salesforce.com" maxPoll="${sf.maxPoll}" 
+	  retrieveTarget="SprintADev_Retrieve_1" unpackaged="SprintADev_package.xml" pollWaitMillis="${sf.pollWaitMillis}"/>
+    </target>
+	
+	<target name="DeployinRT">
+     <sf:deploy username="vmehtani@deloitte.com.rt" password="Neela@12345" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src_RT" checkonly = "false"/>
+    </target>
+	
+	<target name="extract_ST">
+		<mkdir dir="retieve_ST"/>
+      <sf:retrieve username="vmehtani@deloitte.com.st" password="Jan@12345" serverurl="https://test.salesforce.com" maxPoll="${sf.maxPoll}" 
+	  retrieveTarget="retieve_ST" unpackaged="package.xml" pollWaitMillis="${sf.pollWaitMillis}"/>
+    </target>
+	
+	<target name="DeployinSprintADev">
+     <sf:deploy username="vmehtani@deloitte.com.prod.sprintadev" password="Neela@12345" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src_ST_to_SprintADev" checkonly = "false"/>
+    </target>
+</project>
